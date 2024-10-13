@@ -1,0 +1,34 @@
+{
+  "name": "highlightjs-metapost",
+  "version": "0.1",
+  "description": "MetaPost Language  syntax highlighting plugin for highlight.js",
+  "main": "src/metapost.js",
+  "scripts": {
+    "test": "./node_modules/.bin/mocha --reporter spec"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/highlightjs/highlightjs-metapost.git"
+  },
+  "keywords": [
+    "metapost",
+    "hljs",
+    "highlightjs",
+    "highlight.js"
+  ],
+  "author": "Maxime Chupin",
+  "license": "CC0-1.0",
+  "bugs": {
+    "url": "https://github.com/highlightjs/highlightjs-metapost/issues"
+  },
+  "homepage": "https://github.com/highlightjs/highlightjs-metapost#readme",
+  "devDependencies": {
+    "highlight.js": "^10.7.2",
+    "mocha": "^10.0.0",
+    "should": "^13.2.3"
+  },
+  "dependencies": {
+    "minimist": ">=1.2.6",
+    "mkdirp": "^1.0.4"
+  }
+}
