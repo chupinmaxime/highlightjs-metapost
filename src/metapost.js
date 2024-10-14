@@ -13,9 +13,7 @@ Website: https://tug.org/metapost.html
 export default function(hljs) {
   const regex = hljs.regex;
 
-  const COMMENT = {
-    hljs.COMMENT('%'),
-  };
+  const COMMENT = hljs.COMMENT('%');
 
 
   const MACRO_DEF = {
@@ -24,9 +22,11 @@ export default function(hljs) {
   };
 
   const STRING = {
-    className: 'string',
-    relevance: 0,
-    hljs.QUOTE_STRING_MODE
+        className: 'string',
+        begin: '"',
+        end: '"',
+        contains: [ { begin: '""' } ],
+        starts: TRANSPOSE
   };
   const MP_KEYWORDS = [
     'beginfig','begingroup','def','end','enddef','endfig','endgroup',
