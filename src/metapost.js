@@ -9,12 +9,14 @@ Category: graphic
 Website: https://tug.org/metapost.html
 */
 
-/** @type LanguageFn */
-export default function(hljs) {
-  const regex = hljs.regex;
+hljs.registerLanguage('metapost', function(hljs) {
+  
 
-  const COMMENT = hljs.COMMENT('%');
-
+  const COMMENT = hljs.COMMENT(
+    '%',
+    '$',
+    { relevance: 0 }
+  );
 
   const MACRO_DEF = {
     className: 'macro',
@@ -26,8 +28,8 @@ export default function(hljs) {
         begin: '"',
         end: '"',
         contains: [ { begin: '""' } ],
-        starts: TRANSPOSE
   };
+  
   const MP_KEYWORDS = [
     'beginfig','begingroup','def','end','enddef','endfig','endgroup',
     'hide','image','input','let','makepen','makepath','newinternal',
@@ -98,19 +100,23 @@ export default function(hljs) {
   ];
   return {
     name: 'MetaPost',
-    case_insensitive: false,
-    aliases: 'mp',
     keywords: {
       $pattern: /\b[a-z][a-z0-9_]+\b|\.[a-z][a-z0-9_]+\./,
-      keyword: MP_KEYWORDS,
-      literal: MP_LITERALS,
-      built_in: MP_BUILT_INS,
-      type: MP_TYPES
+
+        keyword: MP_KEYWORDS,
+        built_in: MP_BUILT_INS,
+        literal: MP_LITERALS,
+        type: MP_TYPES,
     },
     contains: [
-      STRING,
-      MACRO_DEF,
-      COMMENT,
+        STRING,
+        MACRO_DEF,
+        COMMENT,
+        {
+            className: 'number',
+            begin: '\\b\\d+(\\.\\d+)?', // numbers
+            relevance: 0
+        },
     ]
   };
-}
+});
